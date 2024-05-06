@@ -1,6 +1,7 @@
 name: Run Main.py
 
 on:
+  workflow_dispatch:
   schedule:
     # Runs at 10:00 AM SGT every day
     - cron: '0 2 * * *'
