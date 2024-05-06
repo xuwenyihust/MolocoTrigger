@@ -13,5 +13,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run main.py
+    - name: Decode GCP Credentials
+      run: echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > ${{ github.workspace }}/credentials.json
+
+    - name: Set up Python
+      run: pip install -y requests, gspread, pandas, oauth2client
+
+    - name: Run src/main.py
+      env: 
+        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+        EMAIL: ${{ secrets.EMAIL }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        REPORT_URL: ${{ secrets.REPORT_URL }}
+        WORKPLACE_ID: ${{ secrets.WORKPLACE_ID }}
       run: python src/main.py
