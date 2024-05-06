@@ -14,4 +14,4 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run main.py
-      run: python /Users/wenyixu/Coding/MolocoTrigger/main.py
+      run: python src/main.py
