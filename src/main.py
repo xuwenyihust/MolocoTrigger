@@ -85,7 +85,7 @@ def save_csv_to_google_sheet(csv_data):
     # # Clear existing data in the sheet
     sheet.clear()
 
-    values = csv_data.tolist()
+    values = [csv_data.columns.tolist()] + csv_data.values.tolist()
     sheet.insert_rows(values, 1)
 
     print("CSV data saved to Google Sheet successfully!")
