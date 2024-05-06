@@ -17,7 +17,7 @@ jobs:
       run: echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > ${{ github.workspace }}/credentials.json
 
     - name: Set up Python
-      run: pip install requests, gspread, pandas, oauth2client
+      run: pip install requests gspread pandas oauth2client
 
     - name: Run src/main.py
       env: 
