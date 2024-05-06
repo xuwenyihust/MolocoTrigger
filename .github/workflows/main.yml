@@ -1,9 +1,9 @@
 name: Run Main.py
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    # Runs at 10:00 AM SGT every day
+    - cron: '0 2 * * *'
 
 jobs:
   run_main:

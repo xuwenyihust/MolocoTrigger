@@ -25,7 +25,7 @@ def get_token():
 def generate_report(token):
     url = f"{os.environ.get('REPORT_URL')}"
 
-    start_date = (datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=31)).strftime("%Y-%m-%d")
     end_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
     payload = {
