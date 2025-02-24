@@ -1,4 +1,4 @@
-name: Run Main.py
+name: Moloco Report
 
 on:
   workflow_dispatch:
@@ -7,24 +7,30 @@ on:
     - cron: '0 2 * * *'
 
 jobs:
-  run_main:
+  generate-report:
     runs-on: ubuntu-latest
+    
+    env:
+      MOLOCO_EMAIL: ${{ secrets.MOLOCO_EMAIL }}
+      MOLOCO_PASSWORD: ${{ secrets.MOLOCO_PASSWORD }}
+      MOLOCO_CREATE_REPORT_URL: ${{ secrets.MOLOCO_CREATE_REPORT_URL }}
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Decode GCP Credentials
-      run: echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > ${{ github.workspace }}/credentials.json
+    - uses: actions/checkout@v2
 
     - name: Set up Python
-      run: pip install requests gspread pandas oauth2client
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
 
-    - name: Run src/main.py
-      env: 
-        ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
-        EMAIL: ${{ secrets.EMAIL }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-        REPORT_URL: ${{ secrets.REPORT_URL }}
-        WORKPLACE_ID: ${{ secrets.WORKPLACE_ID }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Decode GCP Credentials
+      run: |
+        echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > credentials.json
+
+    - name: Run report generator
       run: python src/main.py
