@@ -185,7 +185,8 @@ def main():
             "OKX_UAE": "XDWdy8A9RsZ8ZVr8", 
             "OKX_West_EEA": "qDnoI5mKBsjNRGMI",
             "OKX_AU": "YwT1hzKNPPFThOn3",
-            "OKX_Central_EEA": "zty6QzNUmN8rolzA"
+            "OKX_Central_EEA": "zty6QzNUmN8rolzA",
+            "OKX_East_EEA": "cO5bX9K8XEdOjS4v"
         }
         ad_account_ids_okx_tr = {
             "OKX_Turkey": "oKh63zTDj88GSnQE"
